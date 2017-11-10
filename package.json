@@ -13,5 +13,8 @@
     "algorithms"
   ],
   "author": "Greg Stewart",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
 }
