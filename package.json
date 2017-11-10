@@ -1,0 +1,17 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "Practice implementing Algorithms ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "javascript",
+    "flow",
+    "jest",
+    "algorithms"
+  ],
+  "author": "Greg Stewart",
+  "license": "MIT"
+}
