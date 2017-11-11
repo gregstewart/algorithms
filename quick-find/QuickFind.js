@@ -1,13 +1,15 @@
+// @flow
 
 export default class {
-  constructor(n) {
+  id: Array<number>
+  constructor(n: number):void {
     this.id = []
     for(let i = 0; i < n; i++) {
       this.id.push(i);
     }
   }
 
-  union(p, q) {
+  union(p: number, q:number):void {
     const pid = this.id[p];
     const qid = this.id[q];
 
@@ -18,7 +20,7 @@ export default class {
     }
   }
 
-  connected(p,q) {
+  connected(p: number, q: number): boolean {
     return this.id[p] === this.id[q];
   }
 }
