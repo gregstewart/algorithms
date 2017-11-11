@@ -2,14 +2,14 @@
 
 export default class {
   id: Array<number>
-  constructor(n: number):void {
+  constructor(n: number): void {
     this.id = []
     for(let i = 0; i < n; i++) {
       this.id.push(i);
     }
   }
 
-  union(p: number, q:number):void {
+  union(p: number, q:number): void {
     const pid = this.id[p];
     const qid = this.id[q];
 
