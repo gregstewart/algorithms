@@ -18,4 +18,6 @@ The cost model is: number of array reads and writes (accesses)
 |-----------|:----:|----:|
 |N          |N     |1    |
 
-`Union` is too expensive. It takes `N^2` (`quadratic`) array accesses to process a sequence of `N` union commands on `N` objects. Quadratic algorithms do not scale! Imagine `10^9` commands on `10^9` objects, __Quick Find__ would take more than 10^18 operations.
+`Union` is too expensive `O(N^2)`.
+
+It takes `N^2` (`quadratic`) array accesses to process a sequence of `N` union commands on `N` objects. Quadratic algorithms do not scale! Imagine `10^9` commands on `10^9` objects, __Quick Find__ would take more than 10^18 operations.
