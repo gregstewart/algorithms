@@ -66,6 +66,14 @@ public class PercolationTest {
         }
     }
 
+    @Test public void testPercolationOpenOpensANode() {
+      Percolation appUnderTest = new Percolation(1);
+      assertFalse("Is not open", appUnderTest.isOpen(1,1));
+      appUnderTest.open(1,1);
+
+      assertTrue("Is now open", appUnderTest.isOpen(1,1));
+    }
+
     // isOpen tests
     @Test public void testPercolationIsOpenThrowsIllegalArgumentExceptionIfRowLessThanZero() {
         Percolation appUnderTest = new Percolation(1);
@@ -105,6 +113,19 @@ public class PercolationTest {
         } catch (IllegalArgumentException anIllegalArgumentException) {
           assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
         }
+    }
+
+    @Test public void testPercolationIsOpenReturnsFalseWhenInitialised() {
+      Percolation appUnderTest = new Percolation(1);
+
+      assertFalse("Node is not open", appUnderTest.isOpen(1,1));
+    }
+
+    @Test public void testPercolationIsOpenReturnsTrueWhenOpened() {
+      Percolation appUnderTest = new Percolation(1);
+      appUnderTest.open(1,1);
+
+      assertTrue("Node is open", appUnderTest.isOpen(1,1));
     }
 
 
@@ -147,5 +168,17 @@ public class PercolationTest {
         } catch (IllegalArgumentException anIllegalArgumentException) {
           assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
         }
+    }
+
+    @Test public void testPercolationPercolateReturnsFalseAfterInitialisation() {
+      Percolation appUnderTest = new Percolation(1);
+
+      assertFalse("It should not percolate", appUnderTest.percolates());
+    }
+
+    @Test public void testPercolationPercolateReturnsTrueAfterConnectingTopToBottom() {
+      Percolation appUnderTest = new Percolation(1);
+      appUnderTest.open(1,1);
+      assertTrue("It should percolate", appUnderTest.percolates());
     }
 }

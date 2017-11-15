@@ -22,6 +22,7 @@ repositories {
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
+    compile 'edu.princeton.cs:algs4:1.0.3'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
@@ -29,4 +30,3 @@ dependencies {
 
 // Define the main class for the application
 mainClassName = 'App'
-
