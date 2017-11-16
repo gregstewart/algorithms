@@ -27,10 +27,10 @@ public class Percolation {
       throw new IllegalArgumentException("col must be either be equal to or greater than 1");
     }
 
-    if(!isOpen(row, col)) {
+    if (!isOpen(row, col)) {
       int id = flattenCoordinates(row, col);
 
-      if(row == 1) {
+      if (row == 1) {
         weightedUnion.union(virtualTop, id);
       }
       if (row == size) {
@@ -74,9 +74,9 @@ public class Percolation {
   // number of open sites
   public int numberOfOpenSites() {
     int count = 0;
-    
+
     for (boolean item : grid) {
-      if (item == true) {
+      if (item) {
         count++;
       }
     }
@@ -90,7 +90,7 @@ public class Percolation {
   }
 
   private int flattenCoordinates(int row, int col) {
-    if(row < 0 || row > gridSize || col < 0 || col > gridSize) {
+    if (row < 0 || row > gridSize || col < 0 || col > gridSize) {
       throw new IndexOutOfBoundsException("Illegal parameter value: " + row + "," + col);
     }
     return (size * (row - 1)) + (col - 1);
@@ -108,9 +108,4 @@ public class Percolation {
         // don't connect field with field outside grid
     }
   }
-
-  //
-  // public static void main(String[] args) {
-  //
-  // }   // test client (optional)
 }

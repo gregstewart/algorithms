@@ -58,16 +58,16 @@ public class PercolationStats {
     return lowConfidence;
   }
   // high endpoint of 95% confidence interval
-  public double highConfidence(){
+  public double highConfidence() {
     return highConfidence;
   }
 
   // test client (described below)
   public static void main(String[] args) {
-    int N = Integer.parseInt(args[0]);
-    int T = Integer.parseInt(args[1]);
+    int gridSize = Integer.parseInt(args[0]);
+    int trials = Integer.parseInt(args[1]);
 
-    PercolationStats percolationStats = new PercolationStats(N, T);
+    PercolationStats percolationStats = new PercolationStats(gridSize, T);
     System.out.println("mean                    = " + percolationStats.mean());
     System.out.println("stddev                  = " + percolationStats.stddev());
     System.out.println("95% confidence interval = " + percolationStats.lowConfidence() + ", " + percolationStats.highConfidence());
