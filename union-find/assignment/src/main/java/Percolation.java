@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
   private final int size, gridSize, virtualTop, virtualBottom;
+  private int openSitesCount;
   private final WeightedQuickUnionUF weightedUnion;
   private boolean[] grid;
 
@@ -14,6 +15,7 @@ public class Percolation {
     gridSize = n * n;
     grid = new boolean[gridSize];
     virtualTop = 0;
+    openSitesCount = 0;
     virtualBottom = n * n + 1;
     weightedUnion = new WeightedQuickUnionUF(n * n + 2);
   }
@@ -42,6 +44,7 @@ public class Percolation {
       connectAdjacent(id, row, col + 1);
 
       grid[id] = true;
+      openSitesCount++;
     }
   }
   // is site (row, col) open?
@@ -73,14 +76,7 @@ public class Percolation {
 
   // number of open sites
   public int numberOfOpenSites() {
-    int count = 0;
-
-    for (boolean item : grid) {
-      if (item) {
-        count++;
-      }
-    }
-    return count;
+    return openSitesCount;
   }
 
   // does the system percolate?
