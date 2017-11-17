@@ -54,11 +54,11 @@ public class PercolationStats {
     return stdDev;
   }
   // low  endpoint of 95% confidence interval
-  public double lowConfidence() {
+  public double confidenceLo() {
     return lowConfidence;
   }
   // high endpoint of 95% confidence interval
-  public double highConfidence() {
+  public double confidenceHi() {
     return highConfidence;
   }
 
@@ -70,6 +70,6 @@ public class PercolationStats {
     PercolationStats percolationStats = new PercolationStats(gridSize, trials);
     System.out.println("mean                    = " + percolationStats.mean());
     System.out.println("stddev                  = " + percolationStats.stddev());
-    System.out.println("95% confidence interval = " + percolationStats.lowConfidence() + ", " + percolationStats.highConfidence());
+    System.out.println("95% confidence interval = " + percolationStats.confidenceLo() + ", " + percolationStats.confidenceHi());
   }
 }
