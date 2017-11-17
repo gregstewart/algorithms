@@ -6,12 +6,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-
 import edu.princeton.cs.algs4.In;
 
 public class PercolationTest {
     private static final int GRID_SIZE = 5;
     private Percolation percolation;
+    private int count = 0;
+    private boolean isPercolated = false;
 
     @Before public void setUp() {
         percolation = new Percolation(GRID_SIZE);
@@ -243,11 +244,18 @@ public class PercolationTest {
     }
 
     @Test public void testWithInputOneNoDoesNotPercolate() {
-      In in = new In("test-data/input1-no.txt");
+      runIntegrationTest("src/test/java/test-data/input1-no.txt");
+
+      assertFalse("Input one does not percolate", isPercolated);
+      assertTrue("Has zero open sites", count == 0);
+    }
+
+    private void runIntegrationTest(String file) {
+      In in = new In(file);
       int n = in.readInt();
       Percolation percolation = new Percolation(n);
-      boolean isPercolated = false;
-      int count = 0;
+      isPercolated = false;
+      count = 0;
       while (!in.isEmpty()) {
           int row = in.readInt();
           int col = in.readInt();
@@ -260,8 +268,5 @@ public class PercolationTest {
               break;
           }
       }
-
-      assertFalse("Input one does not percolate", isPercolated);
-      assertTrue("Has zero open sites", count == 0);
     }
 }
