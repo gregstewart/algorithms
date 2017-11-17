@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-  private final int size, gridSize, virtualTop, virtualBottom;
+  private final int size, virtualTop, virtualBottom;
   private int openSitesCount;
   private final WeightedQuickUnionUF weightedUnion;
   private final WeightedQuickUnionUF fullness;
@@ -13,8 +13,7 @@ public class Percolation {
       throw new IllegalArgumentException("n must be either be equal to or greater than 1");
     }
     size = n;
-    gridSize = n * n;
-    grid = new boolean[gridSize];
+    grid = new boolean[n * n];
     virtualTop = 0;
     openSitesCount = 0;
     virtualBottom = n * n + 1;
@@ -75,7 +74,7 @@ public class Percolation {
     return (size * (row - 1)) + (col - 1);
   }
 
-  private void validateCoordinates(int row, int col) throws IllegalArgumentException {
+  private void validateCoordinates(int row, int col) {
     if (row <= 0 || row > size) {
       throw new IllegalArgumentException("Value must be greater than 0 and less than or equal to the grid size");
     }

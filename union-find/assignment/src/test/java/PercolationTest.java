@@ -356,6 +356,13 @@ public class PercolationTest {
       assertTrue("Has six open sites", percolation.numberOfOpenSites() == 6);
     }
 
+    @Test public void testWithInputTenDoesNotPercolate() {
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input10-no.txt");
+
+      assertFalse("Input ten does not percolate", percolation.percolates());
+      assertTrue("Has six open sites", percolation.numberOfOpenSites() == 55);
+    }
+
     private Percolation runIntegrationTest(String file) {
       In in = new In(file);
       int n = in.readInt();
