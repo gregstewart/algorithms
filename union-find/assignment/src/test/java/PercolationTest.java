@@ -6,6 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+
+import edu.princeton.cs.algs4.In;
+
 public class PercolationTest {
     private static final int GRID_SIZE = 5;
     private Percolation percolation;
@@ -237,5 +240,28 @@ public class PercolationTest {
       percolation.open(5,5);
 
       assertTrue("Count open sites is correct", percolation.numberOfOpenSites() == 2);
+    }
+
+    @Test public void testWithInputOneNoDoesNotPercolate() {
+      In in = new In("test-data/input1-no.txt");
+      int n = in.readInt();
+      Percolation percolation = new Percolation(n);
+      boolean isPercolated = false;
+      int count = 0;
+      while (!in.isEmpty()) {
+          int row = in.readInt();
+          int col = in.readInt();
+          if (!percolation.isOpen(row, col)) {
+              count++;
+          }
+          percolation.open(row, col);
+          isPercolated = percolation.percolates();
+          if (isPercolated) {
+              break;
+          }
+      }
+
+      assertFalse("Input one does not percolate", isPercolated);
+      assertTrue("Has zero open sites", count == 0);
     }
 }
