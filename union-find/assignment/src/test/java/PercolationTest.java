@@ -11,8 +11,6 @@ import edu.princeton.cs.algs4.In;
 public class PercolationTest {
     private static final int GRID_SIZE = 5;
     private Percolation percolation;
-    private int count = 0;
-    private boolean isPercolated = false;
 
     @Before public void setUp() {
         percolation = new Percolation(GRID_SIZE);
@@ -44,7 +42,7 @@ public class PercolationTest {
           appUnderTest.open(-1,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -54,7 +52,7 @@ public class PercolationTest {
           appUnderTest.open(0,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -64,7 +62,7 @@ public class PercolationTest {
           appUnderTest.open(1,-1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -74,7 +72,7 @@ public class PercolationTest {
           appUnderTest.open(1,0);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -93,7 +91,7 @@ public class PercolationTest {
           appUnderTest.isOpen(-1,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -103,7 +101,7 @@ public class PercolationTest {
           appUnderTest.isOpen(0,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -113,7 +111,7 @@ public class PercolationTest {
           appUnderTest.isOpen(1,-1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -123,7 +121,17 @@ public class PercolationTest {
           appUnderTest.isOpen(1,0);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationIsOpenThrowsIllegalArgumentExceptionIfOutOfBounds() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.isOpen(11,5);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -148,7 +156,7 @@ public class PercolationTest {
           appUnderTest.isFull(-1,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -158,7 +166,7 @@ public class PercolationTest {
           appUnderTest.isFull(0,1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("row must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -168,7 +176,7 @@ public class PercolationTest {
           appUnderTest.isFull(1,-1);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -178,7 +186,67 @@ public class PercolationTest {
           appUnderTest.isFull(1,0);
           fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException anIllegalArgumentException) {
-          assertThat(anIllegalArgumentException.getMessage(), is("col must be either be equal to or greater than 1"));
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationIsFullThrowsIllegalArgumentExceptionIfOutOfBounds() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.isFull(11,5);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationOpenThrowsIllegalArgumentExceptionIfOutOfBounds() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.open(11,5);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationOpenFailedToThrowIllegalArgumentExceptionInFeedBack() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.open(5,11);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationIsOpenFailedToThrowIllegalArgumentExceptionInFeedBack() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.isOpen(5,11);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationIsFullFailedToThrowIllegalArgumentExceptionInFeedBack() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.isFull(5,11);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
+        }
+    }
+
+    @Test public void testPercolationOpenFailedToThrowIllegalArgumentExceptionInFeedBackWithLargeNumber() {
+        Percolation appUnderTest = new Percolation(10);
+        try {
+          appUnderTest.open(2147483647, 2147483647);
+          fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException anIllegalArgumentException) {
+          assertThat(anIllegalArgumentException.getMessage(), is("Value must be greater than 0 and less than or equal to the grid size"));
         }
     }
 
@@ -201,6 +269,7 @@ public class PercolationTest {
         percolation.open(3, 3);
         percolation.open(4, 3);
         percolation.open(5, 3);
+        percolation.open(5, 5);
 
         assertTrue(percolation.isFull(1, 3));
         assertTrue(percolation.isFull(2, 3));
@@ -208,6 +277,15 @@ public class PercolationTest {
         assertTrue(percolation.isFull(4, 3));
         assertTrue(percolation.isFull(5, 3));
         assertFalse(percolation.isFull(5, 5));
+    }
+
+    @Test public void testPercolationShouldNotBeFilledUsingThreesInput() {
+        Percolation percolation = new Percolation(3);
+        percolation.open(1, 3);
+        percolation.open(2, 3);
+        percolation.open(3, 3);
+        percolation.open(3, 1);
+        assertFalse(percolation.isFull(3, 1));
     }
 
     @Test public void testPercolationPercolateReturnsFalseAfterInitialisation() {
@@ -244,29 +322,49 @@ public class PercolationTest {
     }
 
     @Test public void testWithInputOneNoDoesNotPercolate() {
-      runIntegrationTest("src/test/java/test-data/input1-no.txt");
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input1-no.txt");
 
-      assertFalse("Input one does not percolate", isPercolated);
-      assertTrue("Has zero open sites", count == 0);
+      assertFalse("Input one does not percolate", percolation.percolates());
+      assertTrue("Has zero open sites", percolation.numberOfOpenSites() == 0);
     }
 
-    private void runIntegrationTest(String file) {
+    @Test public void testWithInputOneDoesPercolate() {
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input1.txt");
+
+      assertTrue("Input one does not percolate", percolation.percolates());
+      assertTrue("Has one open sites", percolation.numberOfOpenSites() == 1);
+    }
+
+    @Test public void testWithInputTwoNoDoesNotPercolate() {
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input2-no.txt");
+
+      assertFalse("Input two does not percolate", percolation.percolates());
+      assertTrue("Has two open sites", percolation.numberOfOpenSites() == 2);
+    }
+
+    @Test public void testWithInputTwoDoesPercolate() {
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input2.txt");
+
+      assertTrue("Input two does not percolate", percolation.percolates());
+      assertTrue("Has two open sites", percolation.numberOfOpenSites() == 3);
+    }
+
+    @Test public void testWithInputThreeDoesPercolate() {
+      Percolation percolation = runIntegrationTest("src/test/java/test-data/input3.txt");
+
+      assertTrue("Input three does percolate", percolation.percolates());
+      assertTrue("Has six open sites", percolation.numberOfOpenSites() == 6);
+    }
+
+    private Percolation runIntegrationTest(String file) {
       In in = new In(file);
       int n = in.readInt();
       Percolation percolation = new Percolation(n);
-      isPercolated = false;
-      count = 0;
       while (!in.isEmpty()) {
           int row = in.readInt();
           int col = in.readInt();
-          if (!percolation.isOpen(row, col)) {
-              count++;
-          }
           percolation.open(row, col);
-          isPercolated = percolation.percolates();
-          if (isPercolated) {
-              break;
-          }
       }
+      return percolation;
     }
 }
