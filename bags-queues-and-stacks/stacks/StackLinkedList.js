@@ -17,7 +17,6 @@ export default class {
 
   pop(): string {
     const item: string = this.first.item;
-    console.log(this.first.next);
     this.first = this.first.next;
     return item;
   }
