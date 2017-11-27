@@ -6,6 +6,17 @@ describe("StackLinkedList", () => {
     stackLinkedList = new StackLinkedList();
   });
 
+  describe("isEmpty", () => {
+    it("on init", () => {
+      expect(stackLinkedList.isEmpty()).toEqual(true);
+    });
+
+    it("is false after a push operation", () => {
+      stackLinkedList.push("foo");
+      expect(stackLinkedList.isEmpty()).toEqual(false);
+    });
+  });
+
   describe("Integration", () => {
     it("verifies the end state", () => {
       stackLinkedList.push("to");
