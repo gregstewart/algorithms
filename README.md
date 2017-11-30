@@ -90,6 +90,8 @@ Notes:
 
 #### Assignment
 
+The [details of the assignment are here](bags-queues-and-stacks/assignment/README.md).
+
 Go to `bags-queues-and-stacks/assignment/` and assuming you have both Java and Gradle installed, just run:
 
 `./gradlew clean test`
