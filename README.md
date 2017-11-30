@@ -80,3 +80,24 @@ BUILD SUCCESSFUL in 1s
 ```
 
 [Feedback from the assignment](union-find/assignment/feedback.md)
+
+### Week 2 - Bags, Queues and Stacks
+
+Notes:
+
+* [Stacks](bags-queues-and-stacks/stacks/README.md)
+* [Queues](bags-queues-and-stacks/queues/README.md)
+
+#### Assignment
+
+Go to `bags-queues-and-stacks/assignment/` and assuming you have both Java and Gradle installed, just run:
+
+`./gradlew clean test`
+
+Output:
+
+```
+???? Coming soon
+```
+
+[Feedback from the assignment](bags-queues-and-stacks/assignment/feedback.md)
