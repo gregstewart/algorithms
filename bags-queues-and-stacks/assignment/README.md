@@ -20,10 +20,10 @@ public class Deque<Item> implements Iterable<Item> {
 
 _Corner cases._  Throw the specified exception for the following corner cases:
 
-* Throw a java.lang.IllegalArgumentException if the client calls either addFirst() or addLast() with a null argument.
-* Throw a java.util.NoSuchElementException if the client calls either removeFirst() or removeLast when the deque is empty.
-* Throw a java.util.NoSuchElementException if the client calls the next() method in the iterator when there are no more items to return.
-* Throw a java.lang.UnsupportedOperationException if the client calls the remove() method in the iterator.
+* Throw a `java.lang.IllegalArgumentException` if the client calls either `addFirst()` or `addLast()` with a null argument.
+* Throw a `java.util.NoSuchElementException` if the client calls either `removeFirst()` or `removeLast()` when the deque is empty.
+* Throw a `java.util.NoSuchElementException` if the client calls the `next()` method in the iterator when there are no more items to return.
+* Throw a `java.lang.UnsupportedOperationException` if the client calls the `remove()` method in the iterator.
 
 _Performance requirements._  Your deque implementation must support each deque operation (including construction) in __constant worst-case time__. A deque containing `n` items must use at most `48n + 192` bytes of memory and use space proportional to the number of items __currently__ in the deque. Additionally, your iterator implementation must support each operation (including construction) in __constant worst-case time__.
 

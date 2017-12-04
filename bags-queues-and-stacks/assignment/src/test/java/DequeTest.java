@@ -6,7 +6,143 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import edu.princeton.cs.algs4.In;
 
 public class DequeTest {
+  private Deque<String> deque;
+
+  @Before public void setUp() {
+      deque = new Deque<>();
+  }
+
+  @Test public void testDequeAddFirstThrowsExceptionForNullArgument() {
+    try {
+      deque.addFirst(null);
+      fail("Expected an IllegalArgumentException to be thrown");
+    } catch (IllegalArgumentException anIllegalArgumentException) {
+      assertThat(anIllegalArgumentException.getMessage(), is("Argument can't be null"));
+    }
+  }
+
+  @Test public void testDequeAddLastThrowsExceptionForNullArgument() {
+    try {
+      deque.addLast(null);
+      fail("Expected an IllegalArgumentException to be thrown");
+    } catch (IllegalArgumentException anIllegalArgumentException) {
+      assertThat(anIllegalArgumentException.getMessage(), is("Argument can't be null"));
+    }
+  }
+
+  @Test public void testDequeIteratorNextThrowsNoSuchElementException() {
+    try {
+      deque.iterator().next();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testDequeIteratorRemoveThrowsUnsupportedOperationException() {
+    try {
+      deque.iterator().remove();
+      fail("Expected a UnsupportedOperationException to be thrown");
+    } catch(UnsupportedOperationException aUnsupportedOperationException) {
+      assertThat(aUnsupportedOperationException.getMessage(), is("Not implemented"));
+    }
+  }
+
+  @Test public void testDequeIsEmptyOnInitReturnsTrue() {
+    assertTrue("Is empty after creating object", deque.isEmpty());
+  }
+
+  @Test public void testDequeSizeInitialisesWithZero() {
+    assertEquals("Is Zero in init", 0, deque.size());
+  }
+
+  @Test public void testDequeAddFirstItem() {
+    deque.addFirst("something");
+    Iterator<?> iterator = deque.iterator();
+    assertTrue("Item inserted to the front of the queue, on init next item after insertion is null", deque.iterator().hasNext());
+    assertTrue("Current item is `something`", iterator.next() == "something");
+    try {
+      iterator.next();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+    assertEquals("Is know 1", 1, deque.size());
+  }
+
+  @Test public void testDequeRemoveFirstThrowsNoSuchElementExceptionWhenQueueIsEmpty() {
+    try {
+      deque.removeFirst();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testDequeRemoveFirstItemReturnsTheRemovedItem() {
+    String expected = "First";
+    deque.addFirst(expected);
+
+    assertEquals(String.format("Has the value `%s`", expected), expected, deque.removeFirst());
+    assertEquals("Size 0 again", 0, deque.size());
+    assertTrue("Queue should be empty", deque.isEmpty());
+  }
+
+  @Test public void testDequeRemoveFirstReturnsTheLastItemAddedAfterAddingTwoItemsFirst() {
+    String first = "First";
+    String second = "Second";
+    deque.addFirst(first);
+    deque.addFirst(second);
+
+    assertEquals(String.format("Has the value `%s`", second), second, deque.removeFirst());
+    assertEquals("Size 1 again", 1, deque.size());
+    assertFalse("Queue should be empty", deque.isEmpty());
+  }
+
+  @Test public void testDequeAddLastItem() {
+    deque.addFirst("Foo");
+    deque.addLast("Bar");
+    Iterator<?> iterator = deque.iterator();
+    assertTrue("Current item is `Foo`", iterator.next() == "Foo");
+    assertTrue("Current item is `Bar`", iterator.next() == "Bar");
+    assertEquals("Is know 2", 2, deque.size());
+  }
+
+  @Test public void testDequeRemoveLasttThrowsNoSuchElementExceptionWhenQueueIsEmpty() {
+    try {
+      deque.removeLast();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testDequeRemoveLastItemReturnsItem() {
+    deque.addFirst("Foo");
+    deque.addLast("Bar");
+    Iterator<?> iterator = deque.iterator();
+
+    assertEquals(String.format("Has the value `%s`", "Bar"), "Bar", deque.removeLast());
+
+
+    assertTrue("Current item is `Foo`", iterator.next() == "Foo");
+    assertEquals("Is know 1", 1, deque.size());
+  }
+
+  @Test public void testDequeRemoveLastReturnsTheLastItemAddedAfterAddingTwoItemsFirst() {
+    String first = "First";
+    String second = "Second";
+    deque.addFirst(first);
+    deque.addFirst(second);
+
+    assertEquals(String.format("Has the value `%s`", first), first, deque.removeLast());
+    assertEquals("Size 1 again", 1, deque.size());
+    assertFalse("Queue should be empty", deque.isEmpty());
+  }
 }
