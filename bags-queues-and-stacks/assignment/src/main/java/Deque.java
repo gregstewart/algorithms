@@ -106,6 +106,8 @@ public class Deque<Item> implements Iterable<Item> {
     return new DequeIterator();
   }
 
+  // Using a LinkedList for this solution because of the performance requirement
+  // for constant worst case time
   private class Node {
     private Item item;
     private Node next;
