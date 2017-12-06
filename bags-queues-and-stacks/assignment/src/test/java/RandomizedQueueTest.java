@@ -6,7 +6,96 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-import edu.princeton.cs.algs4.In;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueueTest {
+  private RandomizedQueue<String> randomizedQueue;
+
+  @Before public void setUp() {
+      randomizedQueue = new RandomizedQueue<>();
+  }
+
+  @Test public void testRandomisedQueueIteratorNextThrowsNoSuchElementException() {
+    try {
+      randomizedQueue.iterator().next();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testRandomisedQueueIteratorRemoveThrowsUnsupportedOperationException() {
+    try {
+      randomizedQueue.iterator().remove();
+      fail("Expected a UnsupportedOperationException to be thrown");
+    } catch(UnsupportedOperationException aUnsupportedOperationException) {
+      assertThat(aUnsupportedOperationException.getMessage(), is("Not implemented"));
+    }
+  }
+
+  @Test public void testRandomisedQueueEnqueueThrowsIllegalArgumentExceptionWhenPassedInNull() {
+    try {
+      randomizedQueue.enqueue(null);
+      fail("Expected a IllegalArgumentException to be thrown");
+    } catch(IllegalArgumentException anIllegalArgumentException) {
+      assertThat(anIllegalArgumentException.getMessage(), is("Argument can't be null"));
+    }
+  }
+
+  @Test public void testRandomisedQueueIsEmptyReturnsTrueAfterInitializing() {
+    assertTrue("Queue is empty", randomizedQueue.isEmpty());
+  }
+
+  @Test public void testRandomisedQueueSampleThrowsNoSuchElementExceptionWhenQueueIsEmpty() {
+    try {
+      randomizedQueue.sample();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testRandomisedQueueDequeueThrowsNoSuchElementExceptionWhenQueueIsEmpty() {
+    try {
+      randomizedQueue.dequeue();
+      fail("Expected a NoSuchElementException to be thrown");
+    } catch(NoSuchElementException aNoSuchElementException) {
+      assertThat(aNoSuchElementException.getMessage(), is("No more items"));
+    }
+  }
+
+  @Test public void testRandomisedQueueSizeReturnsZeroWhenInitialised() {
+    assertTrue("Queue size is 0 when initialised", randomizedQueue.size() == 0);
+  }
+
+  @Test public void testRandomisedQueueEnqueueAddsAnItemToTheQueue() {
+    randomizedQueue.enqueue("First");
+
+    assertTrue("Queue size is now 1", randomizedQueue.size() == 1);
+  }
+
+  @Test public void testRandomisedQueueSampleReturnsAnItemWhenTheQueueIsNotEmpty() {
+    randomizedQueue.enqueue("First");
+
+    assertTrue("Sample returns `First`", randomizedQueue.sample() == "First");
+    assertTrue("Queue size is still 1", randomizedQueue.size() == 1);
+  }
+
+  @Test public void testRandomisedQueueDequeueRemovesAndReturnsRemovedElement() {
+    randomizedQueue.enqueue("First");
+
+    assertTrue("Item is First", randomizedQueue.dequeue() == "First");
+    assertTrue("Queue size is 0", randomizedQueue.size() == 0);
+  }
+
+  @Test public void testRandomisedQueueDequeueRemovesRandomElementAndReturnsRemovedElement() {
+    randomizedQueue.enqueue("First");
+    randomizedQueue.enqueue("Second");
+    randomizedQueue.enqueue("Third");
+
+    randomizedQueue.dequeue();
+
+    assertTrue("Queue size is one less", randomizedQueue.size() == 2);
+  }
 }
