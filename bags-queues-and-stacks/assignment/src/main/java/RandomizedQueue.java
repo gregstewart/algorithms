@@ -41,8 +41,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     if (isEmpty()) {
       throw new NoSuchElementException("No more items");
     }
-
-    Item item = items[randomIndex()];
+    int rI = randomIndex();
+    Item item = items[rI];
+    items[rI] = null;
+    if (rI != size - 1) {
+      fill(rI, size - 1);
+    }
     size--;
 
     if (size > 0 && size < items.length / 4) {
@@ -106,5 +110,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
   private int randomIndex() {
     return StdRandom.uniform(size);
+  }
+
+  private void fill(final int i, final int j) {
+    Item temp = items[i];
+    items[i] = items[j];
+    items[j] = temp;
   }
 }
