@@ -72,9 +72,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
   private class RandomDequeIterator implements Iterator<Item> {
     private int index;
+    private int[] indexOrder;
 
     public RandomDequeIterator() {
-      int[] indexOrder = new int[size];
+      indexOrder = new int[size];
       index = 0;
 
       for (int i = 0; i < indexOrder.length; i++) {
@@ -97,7 +98,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         throw new NoSuchElementException("No more items");
       }
 
-      return items[index++];
+      return items[indexOrder[index++]];
     }
   }
 
