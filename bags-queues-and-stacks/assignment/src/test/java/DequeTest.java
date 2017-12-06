@@ -9,8 +9,6 @@ import static org.hamcrest.CoreMatchers.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import edu.princeton.cs.algs4.In;
-
 public class DequeTest {
   private Deque<String> deque;
 
